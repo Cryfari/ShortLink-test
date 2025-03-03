@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Client\HttpClientException;
 
 class UserLoginRequest extends FormRequest
 {
@@ -29,7 +30,7 @@ class UserLoginRequest extends FormRequest
 
     protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
     {
-        throw new \Illuminate\Http\Exceptions\HttpResponseException(response([
+        throw new HttpClientException(response([
             "errors" => $validator->errors()
         ], 400));
     }
