@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary()->nullable(false);
             $table->foreignUuid('user')->nullable(false);
             $table->text('url')->nullable(false);
-            $table->text('short')->nullable(false)->unique();
+            $table->string('short', 20)->nullable(false)->unique();
             $table->boolean('isDelete')->default(false);
             $table->timestamps();
 
