@@ -36,9 +36,7 @@ class AuthMiddleware
         } else {
             return response()->json([
                 "errors" => [
-                    "message" => [
-                        "unauthorized",
-                    ]
+                    "message" => "unauthorized"
                 ]
             ])->setStatusCode(401);
         }

@@ -34,7 +34,6 @@ class UserController extends Controller
         $user->save();
 
         $respose = [
-            'message' => 'User registered successfully',
             'data' => [
                 'username'=> $user->username,
             ]
@@ -50,9 +49,7 @@ class UserController extends Controller
         if (!$user || !Hash::check($data['password'], $user->password)) {
             throw new HttpResponseException(response([
                 "errors" => [
-                    "message" => [
-                        "username or password is incorrect"
-                    ]
+                    "message" => "username or password is incorrect"
                 ]
             ], 400));
         }
@@ -61,7 +58,6 @@ class UserController extends Controller
         $user->save();
 
         $respose = [
-            'message' => 'User logged in successfully',
             'data' => [
                 'username'=> $user->username,
                 'token'=> $user->token
@@ -96,7 +92,9 @@ class UserController extends Controller
 
         $user->save();
         return response()->json([
-            'data' => $user
+            'data' => [
+                'message' => 'user updated'
+            ]
         ]);
     }
 

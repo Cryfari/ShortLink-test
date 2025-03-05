@@ -15,7 +15,9 @@ class setAccessHeader
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $request->headers->set('Accept', 'application/json');
+        if (!$request->is('short/*')) {
+            $request->headers->set('Accept', 'application/json');
+        }
         return $next($request);
     }
 }

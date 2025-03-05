@@ -13,11 +13,13 @@ class ShortLink extends Model
     public $timestamps = true;
 
     protected $fillable = [
-        'id',,
+        'id',
         'user',
         'url',
         'short',
     ];
+
+    public $incrementing = false;
 
     public function user(){
         return $this->belongsTo(User::class, 'user', 'id');
