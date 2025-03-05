@@ -4,6 +4,7 @@ use App\Http\Middleware\setAccessHeader;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -16,5 +17,13 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->append(setAccessHeader::class);
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
+        $exceptions->render(function (NotFoundHttpException $e, $request) {
+            if ($request->expectsJson()) {
+                return response()->json([
+                    'errors' => [
+                        'message' => 'Route not found',
+                    ],
+                ], 404);
+            }
+        });
     })->create();
