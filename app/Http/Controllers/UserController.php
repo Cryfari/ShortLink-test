@@ -90,6 +90,7 @@ class UserController extends Controller
             ]);
         }
 
+        $user->updated_at = now();
         $user->save();
         return response()->json([
             'data' => [
