@@ -23,8 +23,8 @@ class UserLoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'username'=>'required|string|min:5|max:50',
-            'password'=> 'required|string|min:8'
+            'username'=>'required',
+            'password'=> 'required'
         ];
     }
 
@@ -38,10 +38,7 @@ class UserLoginRequest extends FormRequest
     public function messages(){
         return [
             'username.required'=>'Username required',
-            'username.min'=>'Username at least 5 characters',
-            'username.max' => 'Username at most 50 characters',
             'password.required'=>'Password required',
-            'password.min'=>'Password at least 8 characters'
         ];
     }
 }
