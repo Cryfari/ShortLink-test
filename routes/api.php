@@ -17,3 +17,6 @@ Route::middleware(AuthMiddleware::class)->group(function () {
     Route::get("/short/show",[ShortLinkController::class,"getAllShortLinks"]);
     Route::delete("/short/{idShort}",[ShortLinkController::class,"deleteShortLink"]);
 });
+
+
+Route::get('/{short}', [ShortLinkController::class, 'redirectShortLink']);
